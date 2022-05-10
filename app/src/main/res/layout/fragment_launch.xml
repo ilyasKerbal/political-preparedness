@@ -22,7 +22,7 @@
             app:srcCompat="@drawable/ballot_logo" />
 
         <Button
-            android:id="@+id/upcoming_button"
+            android:id="@+id/upcoming_election_button"
             style="@style/Button"
             android:layout_width="0dp"
             android:layout_height="wrap_content"

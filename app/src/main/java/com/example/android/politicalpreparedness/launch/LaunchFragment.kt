@@ -18,7 +18,7 @@ class LaunchFragment : Fragment() {
         binding.lifecycleOwner = this
 
         binding.representativeButton.setOnClickListener { navToRepresentatives() }
-        binding.upcomingButton.setOnClickListener { navToElections() }
+        binding.upcomingElectionButton.setOnClickListener { navToElections() }
 
         return binding.root
     }
