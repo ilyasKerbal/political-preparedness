@@ -111,6 +111,7 @@ class DetailFragment : Fragment() {
                     startLocationUpdates()
                     // Permission is granted. Continue the action or workflow
                     getLocation()
+                    viewModel.findRepresentatives()
                 } else {
                     // Permission denied.
                     snackbar = Snackbar.make(
@@ -159,6 +160,7 @@ class DetailFragment : Fragment() {
                 val address = location?.let { geoCodeLocation(it) }
                 address?.let {
                     viewModel.setAddress(address)
+                    viewModel.findRepresentatives()
                 }
             }
     }
