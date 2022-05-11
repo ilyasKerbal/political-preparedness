@@ -17,13 +17,14 @@ interface ElectionDao {
     fun getAllElections(): LiveData<List<Election>>
 
     @Query("SELECT * from election_table WHERE id = :id")
-    suspend fun get(id: Long): Election?
+    suspend fun get(id: Int): Election?
 
     @Query("DELETE FROM election_table WHERE id = :id")
-    suspend fun deleteByElectionId(id: Long)
+    suspend fun deleteByElectionId(id: Int)
 
     @Query("DELETE FROM election_table")
     suspend fun clear()
 
-
+    @Query("SELECT EXISTS(SELECT * from election_table WHERE id = :id)")
+    fun exists(id: Int): LiveData<Boolean>
 }

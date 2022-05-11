@@ -16,6 +16,8 @@
     <dimen name="margin_half">8dp</dimen>
     <dimen name="text_size_normal">16sp</dimen>
     <dimen name="margin_wide">16dp</dimen>
-    <dimen name="box_text_size">24sp</dimen>
+
+    <dimen name="box_text_size">20sp</dimen>
+    <dimen name="box_content_text_size">16sp</dimen>
 
 </resources>

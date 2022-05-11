@@ -6,15 +6,28 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.example.android.politicalpreparedness.R
 import com.example.android.politicalpreparedness.database.ElectionDatabase
 import com.example.android.politicalpreparedness.databinding.FragmentElectionBinding
+import com.example.android.politicalpreparedness.election.adapter.ElectionListAdapter
+import com.example.android.politicalpreparedness.election.adapter.ElectionListener
 
 class ElectionsFragment: Fragment() {
 
     // Declare ViewModel
-    private lateinit var viewModel : ElectionsViewModel
+    private val viewModel : ElectionsViewModel by lazy {
+        val activity = requireNotNull(this.activity) {
+            "You can only access the viewModel after onViewCreated()"
+        }
+        val application = activity.application
+        val dataSource = ElectionDatabase.getInstance(application).electionDao
+        val viewModelFactory = ElectionsViewModelFactory(dataSource)
+
+        ViewModelProvider(this, viewModelFactory).get(ElectionsViewModel::class.java)
+    }
 
     // Data binding
     private lateinit var binding: FragmentElectionBinding
@@ -25,20 +38,26 @@ class ElectionsFragment: Fragment() {
 
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_election, container, false)
 
-        val dataSource = ElectionDatabase.getInstance(requireActivity().application).electionDao
-
-        val viewModelFactory = ElectionsViewModelFactory(dataSource)
-
-        viewModel = ViewModelProvider(this, viewModelFactory).get(ElectionsViewModel::class.java)
-
         binding.viewmodel = viewModel
-        binding.lifecycleOwner = this
+        binding.lifecycleOwner = this.viewLifecycleOwner
 
-        //TODO: Link elections to voter info
+        viewModel.navigateToVoterInfo.observe(viewLifecycleOwner, Observer {
+            it?.let {
+                this.findNavController().navigate(ElectionsFragmentDirections.actionElectionsFragmentToVoterInfoFragment(it.id, it.division))
+                viewModel.doneNavigating()
+            }
+        })
 
-        //TODO: Initiate recycler adapters
+        val upcomingElectionAdapter = ElectionListAdapter(ElectionListener {
+            viewModel.onElectionClicked(it)
+        })
 
-        //TODO: Populate recycler adapters
+        val savedElectionAdapter = ElectionListAdapter(ElectionListener {
+            viewModel.onElectionClicked(it)
+        })
+
+        binding.savedElectionsList.adapter = savedElectionAdapter
+        binding.upcomingElectionsList.adapter = upcomingElectionAdapter
         return binding.root
     }
 

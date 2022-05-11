@@ -22,27 +22,32 @@
 
         <TextView
             android:id="@+id/election_name"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@color/colorPrimary"
+            android:textStyle="bold"
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="16dp"
             android:text="@{election.name}"
-            tools:text="Some Name"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Some Name" />
 
         <TextView
             android:id="@+id/election_date"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:text="2025-03-03"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
             android:layout_marginBottom="8dp"
-            android:text="@{election.electionDay.toGMTString()}"
-            app:layout_constraintEnd_toEndOf="@id/election_name"
-            app:layout_constraintStart_toStartOf="@id/election_name"
-            app:layout_constraintTop_toBottomOf="@id/election_name" />
+            android:text="@{election.electionDay.toString()}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/election_name"
+            tools:text="2025-03-03" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

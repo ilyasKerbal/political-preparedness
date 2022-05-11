@@ -29,7 +29,7 @@ class DetailFragment : Fragment() {
 
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_representative, container, false)
         binding.viewmodel = viewModel
-        binding.lifecycleOwner = this
+        binding.lifecycleOwner = this.viewLifecycleOwner
         //TODO: Define and assign Representative adapter
 
         //TODO: Populate Representative adapter
