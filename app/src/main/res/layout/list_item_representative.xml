@@ -21,56 +21,76 @@
         <ImageView
             android:id="@+id/representativePhoto"
             android:layout_width="@dimen/icon_size"
-            android:layout_height="60dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
+            android:layout_height="@dimen/icon_size"
+            android:layout_marginStart="@dimen/margin_half"
+            android:layout_marginTop="@dimen/margin_half"
+            android:layout_marginBottom="@dimen/margin_half"
+            profileImage="@{representative.official.photoUrl}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:id="@+id/facebookIcon"
-            android:layout_width="@dimen/icon_size"
-            android:layout_height="60dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
+            android:layout_width="@dimen/icon_half_size"
+            android:layout_height="@dimen/icon_half_size"
+            android:layout_marginEnd="@dimen/margin_half"
+            android:layout_marginBottom="@dimen/margin_half"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintEnd_toStartOf="@+id/twitterIcon"
+            app:srcCompat="@drawable/ic_facebook" />
 
         <ImageView
             android:id="@+id/twitterIcon"
-            android:layout_width="@dimen/icon_size"
-            android:layout_height="60dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
+            android:layout_width="@dimen/icon_half_size"
+            android:layout_height="@dimen/icon_half_size"
+            android:layout_marginStart="@dimen/margin_normal"
+            android:layout_marginTop="@dimen/margin_half"
+            android:layout_marginBottom="@dimen/margin_half"
+            app:srcCompat="@drawable/ic_twitter"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent"/>
 
         <ImageView
             android:id="@+id/wwwIcon"
-            android:layout_width="@dimen/icon_size"
-            android:layout_height="60dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
+            android:layout_width="@dimen/icon_half_size"
+            android:layout_height="@dimen/icon_half_size"
+            android:layout_marginEnd="@dimen/margin_half"
+            android:layout_marginBottom="@dimen/margin_half"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintEnd_toStartOf="@+id/facebookIcon"
+            app:srcCompat="@drawable/ic_www" />
 
         <TextView
-            android:id="@+id/quality_string"
+            android:id="@+id/office_name"
+            style="@style/textBox"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            app:layout_constraintEnd_toEndOf="@id/representativePhoto"
-            app:layout_constraintStart_toStartOf="@id/representativePhoto"
-            app:layout_constraintTop_toBottomOf="@id/representativePhoto"
-            />
+            android:layout_marginTop="@dimen/margin_half"
+            android:layout_marginStart="@dimen/margin_half"
+            app:layout_constraintStart_toEndOf="@id/representativePhoto"
+            app:layout_constraintTop_toTopOf="parent"
+            android:text="@{representative.office.name}" />
+
+        <TextView
+            android:id="@+id/name"
+            style="@style/textBoxContent"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_half"
+            app:layout_constraintStart_toEndOf="@id/representativePhoto"
+            app:layout_constraintTop_toBottomOf="@id/office_name"
+            android:text="@{representative.official.name}" />
+
+        <TextView
+            android:id="@+id/party"
+            style="@style/textBoxContent"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_half"
+            app:layout_constraintStart_toEndOf="@id/representativePhoto"
+            app:layout_constraintTop_toBottomOf="@id/name"
+            android:text="@{representative.official.party}" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
